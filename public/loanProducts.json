@@ -1,0 +1,44 @@
+{
+    "products": [
+        {
+          "Id": 1,
+          "Name": "Loan Product General",
+          "ProdName": "Loan Product General111",
+          "MinAmount": "100",
+          "MaxAmount": "500",
+          "MinTerm": "1",
+          "MaxTerm": "2",
+          "Rate": "5"
+        },
+        {
+            "Id": 2,
+            "Name": "Loan Product 3000",
+            "ProdName": "Loan Product 3000",
+            "MinAmount": "400",
+            "MaxAmount": "600",
+            "MinTerm": "2",
+            "MaxTerm": "5",
+            "Rate": "2"
+          },
+          {
+            "Id": 3,
+            "Name": "Loan Product 1000",
+            "ProdName": "Loan Product 1000",
+            "MinAmount": "300",
+            "MaxAmount": "800",
+            "MinTerm": "4",
+            "MaxTerm": "9",
+            "Rate": "7"
+          },
+          {
+            "Id": 4,
+            "Name": "Loan Product  для своих",
+            "ProdName": "Loan Product  для своих",
+            "MinAmount": "900",
+            "MaxAmount": "1100",
+            "MinTerm": "8",
+            "MaxTerm": "12",
+            "Rate": "9"
+          }
+    ]
+}

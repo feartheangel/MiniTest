@@ -92,6 +92,15 @@ function App() {
     let prevArr = newArr.concat(newState);
     setState(prevArr);
     alert("Продукт создан!");
+    setNewState({
+      Name: "",
+      ProdName: "",
+      MinAmount: "",
+      MaxAmount: "",
+      MinTerm: "",
+      MaxTerm: "",
+      Rate: "",
+    });
   };
 
   // сохранение изменённых данных с перезаписыванием в основном стейте(не JSON а state!!!)

@@ -6,8 +6,7 @@ function App() {
   const [state, setState] = React.useState([]);
   const [state2, setState2] = React.useState({
     Id: 1,
-    Name: "Loan Product General",
-    ProdName: "Loan Product General111",
+    ProdName: "LG x4000",
     MinAmount: "100",
     MaxAmount: "500",
     MinTerm: "1",
@@ -25,6 +24,9 @@ function App() {
   });
   const [startIndex, setStartIndex] = React.useState(0);
   const [creatingProd, setCreatingProd] = React.useState(false);
+  const [searhThings, setSearchThings] = React.useState("");
+  const [stateFilter, setStateFilter] = React.useState([]);
+  const [flag, setFlag] = React.useState(false);
 
   // клики по списку подгружаемых продуктов
   const clickHandler = (item, index) => {
@@ -110,8 +112,35 @@ function App() {
     let arr = state;
     let arr2 = arr.splice(startIndex, 1, state2);
     setState(arr);
+    setFlag(true);
     alert("СОХРАНЕНО!");
   };
+
+  React.useEffect(() => {
+    setFlag(false);
+  }, [flag]);
+
+  console.log(flag);
+
+  // Поиск по названию продукта
+
+  const searchThingsHandler = (e) => {
+    setSearchThings(e);
+  };
+
+  const searchClickHandler = (state) => {
+    let filt = state.filter(
+      (item) =>
+        item.ProdName.toLocaleUpperCase() === searhThings.toLocaleUpperCase()
+    );
+    setStateFilter(filt);
+  };
+
+  React.useEffect(() => {
+    if (searhThings.length === 0) {
+      return setStateFilter([]);
+    }
+  }, [searhThings.length === 0]);
 
   return (
     <div className="App">
@@ -121,6 +150,20 @@ function App() {
           <header>
             <div className="Wrapper_container_header">
               <p className="Wrapper_container_header-p">SuperBank</p>
+              <div className="Wrapper_container_header_rightSide">
+                <input
+                  type="text"
+                  className="header_search_input"
+                  placeholder="Введите название продукта..."
+                  onChange={(e) => searchThingsHandler(e.target.value)}
+                />
+                <button
+                  onClick={() => searchClickHandler(state)}
+                  className="btn-header"
+                >
+                  Search
+                </button>
+              </div>
             </div>
           </header>
           {/* content */}
@@ -134,7 +177,26 @@ function App() {
                 </button>
               </div>
               {/* список подгружаемых элементов */}
+              {/* по фильтру */}
+              {stateFilter &&
+                stateFilter.map((item, index) => (
+                  <div
+                    className={
+                      startIndex === index
+                        ? "content_leftBar_elems_active"
+                        : "content_leftBar_elems "
+                    }
+                    key={index}
+                    onClick={() => clickHandler(item, index)}
+                    id={index}
+                  >
+                    <p className="elems_name">{item.ProdName}</p>
+                    <p className="elems_time">24.12.2021</p>
+                  </div>
+                ))}
+              {/* без фильтра */}
               {state &&
+                stateFilter.length === 0 &&
                 state.map((item, index) => (
                   <div
                     className={

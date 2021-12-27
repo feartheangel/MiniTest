@@ -2,8 +2,7 @@
     "products": [
         {
           "Id": 1,
-          "Name": "Loan Product General",
-          "ProdName": "Loan Product General111",
+          "ProdName": "LG x4000",
           "MinAmount": "100",
           "MaxAmount": "500",
           "MinTerm": "1",
@@ -12,8 +11,7 @@
         },
         {
             "Id": 2,
-            "Name": "Loan Product 3000",
-            "ProdName": "Loan Product 3000",
+            "ProdName": "Samsung GT900",
             "MinAmount": "400",
             "MaxAmount": "600",
             "MinTerm": "2",
@@ -22,8 +20,7 @@
           },
           {
             "Id": 3,
-            "Name": "Loan Product 1000",
-            "ProdName": "Loan Product 1000",
+            "ProdName": "LG x4090",
             "MinAmount": "300",
             "MaxAmount": "800",
             "MinTerm": "4",
@@ -32,12 +29,29 @@
           },
           {
             "Id": 4,
-            "Name": "Loan Product  для своих",
-            "ProdName": "Loan Product  для своих",
+            "ProdName": "Ipad xPRO",
             "MinAmount": "900",
             "MaxAmount": "1100",
             "MinTerm": "8",
             "MaxTerm": "12",
+            "Rate": "9"
+          },
+          {
+            "Id": 5,
+            "ProdName": "PS5 exclusive",
+            "MinAmount": "3000",
+            "MaxAmount": "8008",
+            "MinTerm": "4",
+            "MaxTerm": "9",
+            "Rate": "10"
+          },
+          {
+            "Id": 6,
+            "ProdName": "PS4 PRO",
+            "MinAmount": "2000",
+            "MaxAmount": "5008",
+            "MinTerm": "4",
+            "MaxTerm": "9",
             "Rate": "9"
           }
     ]

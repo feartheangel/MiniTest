@@ -120,7 +120,16 @@ function App() {
     setFlag(false);
   }, [flag]);
 
-  console.log(flag);
+  // УДАЛЕНИЕ продукта
+  const deleteHandler = (startIndex, state) => {
+    let arrCopy = state;
+    let arrCopy2 = arrCopy.splice(startIndex, 1);
+    setState(arrCopy);
+    setFlag(true);
+    alert("УДАЛЕНО!");
+    setStartIndex(0);
+    setState2(state[0]);
+  };
 
   // Поиск по названию продукта
 
@@ -374,12 +383,21 @@ function App() {
                     onChange={rateHandler}
                   />
                 </div>
-                <button
-                  className="content-btn-rgt"
-                  onClick={() => saveHandler(startIndex, state2)}
-                >
-                  Сохранить
-                </button>
+                <div>
+                  <button
+                    className="content-btn-rgt"
+                    onClick={() => saveHandler(startIndex, state2)}
+                  >
+                    Сохранить
+                  </button>
+
+                  <button
+                    className="content-btn-rgt-delete"
+                    onClick={() => deleteHandler(startIndex, state)}
+                  >
+                    Удалить
+                  </button>
+                </div>
               </div>
             )}
           </div>

@@ -1,58 +1,64 @@
 {
     "products": [
         {
-          "Id": 1,
+          "Id": 0,
           "ProdName": "LG x4000",
           "MinAmount": "100",
           "MaxAmount": "500",
           "MinTerm": "1",
           "MaxTerm": "2",
-          "Rate": "5"
+          "Rate": "5",
+          "Date": "22.12.2020"
         },
         {
-            "Id": 2,
+            "Id": 1,
             "ProdName": "Samsung GT900",
             "MinAmount": "400",
             "MaxAmount": "600",
             "MinTerm": "2",
             "MaxTerm": "5",
-            "Rate": "2"
+            "Rate": "2",
+            "Date": "24.12.2020"
           },
           {
-            "Id": 3,
-            "ProdName": "LG x4090",
+            "Id": 2,
+            "ProdName": "LG x4000",
             "MinAmount": "300",
             "MaxAmount": "800",
             "MinTerm": "4",
             "MaxTerm": "9",
-            "Rate": "7"
+            "Rate": "7",
+            "Date": "25.12.2020"
           },
           {
-            "Id": 4,
+            "Id": 3,
             "ProdName": "Ipad xPRO",
             "MinAmount": "900",
             "MaxAmount": "1100",
             "MinTerm": "8",
             "MaxTerm": "12",
-            "Rate": "9"
+            "Rate": "9",
+            "Date": "25.12.2020"
           },
           {
-            "Id": 5,
+            "Id": 4,
             "ProdName": "PS5 exclusive",
             "MinAmount": "3000",
             "MaxAmount": "8008",
             "MinTerm": "4",
             "MaxTerm": "9",
-            "Rate": "10"
+            "Rate": "10",
+            "Date": "26.12.2020"
           },
           {
-            "Id": 6,
+            "Id": 5,
             "ProdName": "PS4 PRO",
             "MinAmount": "2000",
             "MaxAmount": "5008",
             "MinTerm": "4",
             "MaxTerm": "9",
-            "Rate": "9"
+            "Rate": "9",
+            "Date": "28.12.2020"
           }
     ]
 }

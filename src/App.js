@@ -12,21 +12,28 @@ function App() {
     MinTerm: "1",
     MaxTerm: "2",
     Rate: "5",
+    Date: "28.12.2020",
   });
   const [newState, setNewState] = React.useState({
-    Name: "",
+    Id: "",
     ProdName: "",
     MinAmount: "",
     MaxAmount: "",
     MinTerm: "",
     MaxTerm: "",
     Rate: "",
+    Date: "",
   });
   const [startIndex, setStartIndex] = React.useState(0);
   const [creatingProd, setCreatingProd] = React.useState(false);
   const [searhThings, setSearchThings] = React.useState("");
   const [stateFilter, setStateFilter] = React.useState([]);
   const [flag, setFlag] = React.useState(false);
+
+  // Актуальная дата создания карточек
+  const globalDate = new Date().toLocaleDateString();
+
+  console.log(globalDate);
 
   // клики по списку подгружаемых продуктов
   const clickHandler = (item, index) => {
@@ -91,17 +98,20 @@ function App() {
   // Создание обьекта и сохранение нового обьекта в общий стейт
   const createNewObjHandler = ({ newState, state }) => {
     let newArr = state;
+    newState.Id = state.length;
+    newState.Date = globalDate;
     let prevArr = newArr.concat(newState);
     setState(prevArr);
     alert("Продукт создан!");
     setNewState({
-      Name: "",
+      Id: "",
       ProdName: "",
       MinAmount: "",
       MaxAmount: "",
       MinTerm: "",
       MaxTerm: "",
       Rate: "",
+      Date: "",
     });
   };
 
@@ -110,8 +120,18 @@ function App() {
 
   const saveHandler = (startIndex, state2) => {
     let arr = state;
-    let arr2 = arr.splice(startIndex, 1, state2);
-    setState(arr);
+    let findID = state2.Id;
+
+    if (stateFilter.length === 0) {
+      let arr2 = arr.splice(startIndex, 1, state2);
+      setState(arr);
+    } else {
+      let arr3 = arr.splice(findID, 1, state2);
+      setState(arr);
+      let copyFilterState = stateFilter;
+      let checkFilter = copyFilterState.splice(startIndex, 1, state2);
+      setStateFilter(copyFilterState);
+    }
     setFlag(true);
     alert("СОХРАНЕНО!");
   };
@@ -139,11 +159,20 @@ function App() {
 
   const searchClickHandler = (state) => {
     let filt = state.filter(
-      (item) =>
+      (item, index) =>
         item.ProdName.toLocaleUpperCase() === searhThings.toLocaleUpperCase()
     );
     setStateFilter(filt);
+    if (filt.length === 0) {
+      alert("Ничего не найдено!");
+    }
   };
+
+  React.useEffect(() => {
+    if (stateFilter.length !== 0) {
+      return setState2(stateFilter[startIndex]);
+    }
+  }, [stateFilter.length !== 0]);
 
   React.useEffect(() => {
     if (searhThings.length === 0) {
@@ -200,7 +229,7 @@ function App() {
                     id={index}
                   >
                     <p className="elems_name">{item.ProdName}</p>
-                    <p className="elems_time">24.12.2021</p>
+                    <p className="elems_time">{item.Date}</p>
                   </div>
                 ))}
               {/* без фильтра */}
@@ -218,7 +247,7 @@ function App() {
                     id={index}
                   >
                     <p className="elems_name">{item.ProdName}</p>
-                    <p className="elems_time">24.12.2021</p>
+                    <p className="elems_time">{item.Date}</p>
                   </div>
                 ))}
             </div>

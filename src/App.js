@@ -5,14 +5,16 @@ import axios from "axios";
 function App() {
   const [state, setState] = React.useState([]);
   const [state2, setState2] = React.useState({
-    Id: 1,
-    ProdName: "LG x4000",
+    Id: 0,
+    ProdName: "LG NanoCell",
     MinAmount: "100",
     MaxAmount: "500",
     MinTerm: "1",
     MaxTerm: "2",
     Rate: "5",
     Date: "28.12.2020",
+    Photo:
+      "https://www.belta.by/uploads/lotus/news/2020/000025_D4C94573CC3DFFFC432584EB0050929E_607846.jpg",
   });
   const [newState, setNewState] = React.useState({
     Id: "",
@@ -23,6 +25,7 @@ function App() {
     MaxTerm: "",
     Rate: "",
     Date: "",
+    Photo: "",
   });
   const [startIndex, setStartIndex] = React.useState(0);
   const [creatingProd, setCreatingProd] = React.useState(false);
@@ -340,6 +343,13 @@ function App() {
             {state2 !== undefined && creatingProd === false && (
               <div className="content_infoThings">
                 <p className="infoThings_name">{state2.ProdName}</p>
+                <div className="infoThing_photo_gl">
+                  <img
+                    src={state2.Photo}
+                    alt="photoTV"
+                    className="infoThing_photo"
+                  />
+                </div>
                 <div className="infoThings_newName">
                   <label className="infoThings_newName-label">
                     Product Name

@@ -1,34 +1,38 @@
+
 {
     "products": [
         {
           "Id": 0,
-          "ProdName": "LG x4000",
+          "ProdName": "LG NanoCell",
           "MinAmount": "100",
           "MaxAmount": "500",
           "MinTerm": "1",
           "MaxTerm": "2",
           "Rate": "5",
-          "Date": "22.12.2020"
+          "Date": "22.12.2020",
+          "Photo":"https://www.belta.by/uploads/lotus/news/2020/000025_D4C94573CC3DFFFC432584EB0050929E_607846.jpg"
         },
         {
             "Id": 1,
-            "ProdName": "Samsung GT900",
+            "ProdName": "Samsung QLED TV",
             "MinAmount": "400",
             "MaxAmount": "600",
             "MinTerm": "2",
             "MaxTerm": "5",
             "Rate": "2",
-            "Date": "24.12.2020"
+            "Date": "24.12.2020",
+            "Photo": "https://avatars.mds.yandex.net/get-mpic/4412310/img_id6573996516601454665.jpeg/13hq"
           },
           {
             "Id": 2,
-            "ProdName": "LG x4000",
+            "ProdName": "LG UHD TV",
             "MinAmount": "300",
             "MaxAmount": "800",
             "MinTerm": "4",
             "MaxTerm": "9",
             "Rate": "7",
-            "Date": "25.12.2020"
+            "Date": "25.12.2020",
+            "Photo": "https://www.lg.com/kz/images/televisions/md07528644/gallery/N01_UP78_gallery_43_D01.jpg"
           },
           {
             "Id": 3,
@@ -38,7 +42,8 @@
             "MinTerm": "8",
             "MaxTerm": "12",
             "Rate": "9",
-            "Date": "25.12.2020"
+            "Date": "25.12.2020",
+            "Photo": "https://ilounge.ua/files/products/apple-ipad-pro-129-m1-2021-wi-fi-128gb-silver-mhng3-ou-2_16.1000x.jpeg"
           },
           {
             "Id": 4,
@@ -48,7 +53,8 @@
             "MinTerm": "4",
             "MaxTerm": "9",
             "Rate": "10",
-            "Date": "26.12.2020"
+            "Date": "26.12.2020",
+            "Photo": "https://gamestore.by/userfls/shop/large/14/136094_sony-playstation-5-ps5.webp"
           },
           {
             "Id": 5,
@@ -58,7 +64,8 @@
             "MinTerm": "4",
             "MaxTerm": "9",
             "Rate": "9",
-            "Date": "28.12.2020"
+            "Date": "28.12.2020",
+            "Photo": "https://cdn.shazoo.ru/c800x360/176522_bBGiEWhBqg_ps4pro.jpg"
           }
     ]
 }

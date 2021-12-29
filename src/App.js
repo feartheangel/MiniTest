@@ -36,8 +36,6 @@ function App() {
   // Актуальная дата создания карточек
   const globalDate = new Date().toLocaleDateString();
 
-  console.log(globalDate);
-
   // клики по списку подгружаемых продуктов
   const clickHandler = (item, index) => {
     setState2(item);
@@ -81,6 +79,9 @@ function App() {
   // изменения наших входных данных в инпуте при СОЗДАНИИ НОВОГО ОБЬЕКТА
   const productName2Handler = (e) => {
     setNewState({ ...newState, ProdName: e.target.value });
+  };
+  const productPhotoHandler = (e) => {
+    setNewState({ ...newState, Photo: e.target.value });
   };
   const minAmount2Handler = (e) => {
     setNewState({ ...newState, MinAmount: e.target.value });
@@ -261,24 +262,34 @@ function App() {
                 <p className="infoThings_name">{newState.ProdName}</p>
                 <div className="infoThings_newName">
                   <label className="infoThings_newName-label">
-                    Product Name
+                    Название товара
                   </label>
                   <input
                     type="text"
-                    placeholder="Placeholder"
+                    placeholder="Введите имя продукта"
                     className="infoThings_newName-input"
                     value={newState.ProdName}
                     onChange={productName2Handler}
                   />
                 </div>
+                <div className="infoThings_newName">
+                  <label className="infoThings_newName-label">
+                    Фото товара
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Вставьте URL - ссылку на фото продукта"
+                    className="infoThings_newName-input"
+                    value={newState.Photo}
+                    onChange={productPhotoHandler}
+                  />
+                </div>
                 <div className="infoThings_newAmount">
                   <div className="infoThings_newAmount-min">
-                    <label className="infoThings_newName-label">
-                      Min Amount
-                    </label>
+                    <label className="infoThings_newName-label">Мин цена</label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите мин цену"
                       className="infoThings_newName-input"
                       value={newState.MinAmount}
                       onChange={minAmount2Handler}
@@ -286,11 +297,11 @@ function App() {
                   </div>
                   <div className="infoThings_newAmount-max">
                     <label className="infoThings_newName-label">
-                      Max Amount
+                      Maкс Цена
                     </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите макс цену"
                       className="infoThings_newName-input"
                       value={newState.MaxAmount}
                       onChange={maxAmount2Handler}
@@ -299,20 +310,24 @@ function App() {
                 </div>
                 <div className="infoThings_newTerm">
                   <div className="infoThings_newTerm-min">
-                    <label className="infoThings_newName-label">Min Term</label>
+                    <label className="infoThings_newName-label">
+                      Мин количество
+                    </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите мин количество"
                       className="infoThings_newName-input"
                       value={newState.MinTerm}
                       onChange={minTerm2Handler}
                     />
                   </div>
                   <div className="infoThings_newTerm-max">
-                    <label className="infoThings_newName-label">Max Term</label>
+                    <label className="infoThings_newName-label">
+                      Макс количество
+                    </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите макс количество"
                       className="infoThings_newName-input"
                       value={newState.MaxTerm}
                       onChange={maxTerm2Handler}
@@ -320,12 +335,10 @@ function App() {
                   </div>
                 </div>
                 <div className="infoThings_newRate">
-                  <label className="infoThings_newName-label">
-                    Annual Interest Rate
-                  </label>
+                  <label className="infoThings_newName-label">Рейтинг</label>
                   <input
                     type="text"
-                    placeholder="Placeholder"
+                    placeholder="Укажите рейтинг"
                     className="infoThings_newRate-input"
                     value={newState.Rate}
                     onChange={rate2Handler}
@@ -352,11 +365,11 @@ function App() {
                 </div>
                 <div className="infoThings_newName">
                   <label className="infoThings_newName-label">
-                    Product Name
+                    Имя продукта
                   </label>
                   <input
                     type="text"
-                    placeholder="Placeholder"
+                    placeholder="Введите имя продукта"
                     className="infoThings_newName-input"
                     value={state2.ProdName}
                     onChange={productNameHandler}
@@ -364,12 +377,10 @@ function App() {
                 </div>
                 <div className="infoThings_newAmount">
                   <div className="infoThings_newAmount-min">
-                    <label className="infoThings_newName-label">
-                      Min Amount
-                    </label>
+                    <label className="infoThings_newName-label">Мин цена</label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите минимальную цену"
                       className="infoThings_newName-input"
                       value={state2.MinAmount}
                       onChange={minAmountHandler}
@@ -377,11 +388,11 @@ function App() {
                   </div>
                   <div className="infoThings_newAmount-max">
                     <label className="infoThings_newName-label">
-                      Max Amount
+                      Макс цена
                     </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите максимальную цену"
                       className="infoThings_newName-input"
                       value={state2.MaxAmount}
                       onChange={maxAmountHandler}
@@ -390,20 +401,24 @@ function App() {
                 </div>
                 <div className="infoThings_newTerm">
                   <div className="infoThings_newTerm-min">
-                    <label className="infoThings_newName-label">Min Term</label>
+                    <label className="infoThings_newName-label">
+                      Мин количество
+                    </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите минимальное количество"
                       className="infoThings_newName-input"
                       value={state2.MinTerm}
                       onChange={minTermHandler}
                     />
                   </div>
                   <div className="infoThings_newTerm-max">
-                    <label className="infoThings_newName-label">Max Term</label>
+                    <label className="infoThings_newName-label">
+                      Макс количество
+                    </label>
                     <input
                       type="text"
-                      placeholder="Placeholder"
+                      placeholder="Введите максимальное количество"
                       className="infoThings_newName-input"
                       value={state2.MaxTerm}
                       onChange={maxTermHandler}
@@ -411,12 +426,10 @@ function App() {
                   </div>
                 </div>
                 <div className="infoThings_newRate">
-                  <label className="infoThings_newName-label">
-                    Annual Interest Rate
-                  </label>
+                  <label className="infoThings_newName-label">Рейтинг</label>
                   <input
                     type="text"
-                    placeholder="Placeholder"
+                    placeholder="Укажите рейтинг"
                     className="infoThings_newRate-input"
                     value={state2.Rate}
                     onChange={rateHandler}

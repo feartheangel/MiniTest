@@ -118,6 +118,20 @@ ol[class] {
   color: #000000;
   font-weight: 700;
 }
+.header_select {
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+  border: none;
+}
+.header_select_option {
+  cursor: pointer;
+}
 
 /* content */
 .Wrapper_container_content {

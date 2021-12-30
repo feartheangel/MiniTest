@@ -1,6 +1,11 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import Header from "./Components/Header";
+import ListProducts from "./Components/ListProducts";
+import CreatingThing from "./Components/CreatingThing";
+import InformationThingAdmin from "./Components/InformationThingAdmin";
+import InformationThingUser from "./Components/InformationThingUser";
 
 function App() {
   const [state, setState] = React.useState([]);
@@ -32,6 +37,7 @@ function App() {
   const [searhThings, setSearchThings] = React.useState("");
   const [stateFilter, setStateFilter] = React.useState([]);
   const [flag, setFlag] = React.useState(false);
+  const [selectShow, setSelectShow] = React.useState("user");
 
   // Актуальная дата создания карточек
   const globalDate = new Date().toLocaleDateString();
@@ -144,6 +150,10 @@ function App() {
     setFlag(false);
   }, [flag]);
 
+  // React.useEffect(() => {
+  //   setState2(startIndex);
+  // }, [selectShow === "user"]);
+
   // УДАЛЕНИЕ продукта
   const deleteHandler = (startIndex, state) => {
     let arrCopy = state;
@@ -155,303 +165,74 @@ function App() {
     setState2(state[0]);
   };
 
-  // Поиск по названию продукта
-
-  const searchThingsHandler = (e) => {
-    setSearchThings(e);
-  };
-
-  const searchClickHandler = (state) => {
-    let filt = state.filter(
-      (item, index) =>
-        item.ProdName.toLocaleUpperCase() === searhThings.toLocaleUpperCase()
-    );
-    setStateFilter(filt);
-    if (filt.length === 0) {
-      alert("Ничего не найдено!");
-    }
-  };
-
-  React.useEffect(() => {
-    if (stateFilter.length !== 0) {
-      return setState2(stateFilter[startIndex]);
-    }
-  }, [stateFilter.length !== 0]);
-
-  React.useEffect(() => {
-    if (searhThings.length === 0) {
-      return setStateFilter([]);
-    }
-  }, [searhThings.length === 0]);
-
   return (
     <div className="App">
       <div className="Wrapper">
         <div className="Wrapper_container">
           {/* header */}
           <header>
-            <div className="Wrapper_container_header">
-              <p className="Wrapper_container_header-p">SuperBank</p>
-              <div className="Wrapper_container_header_rightSide">
-                <input
-                  type="text"
-                  className="header_search_input"
-                  placeholder="Введите название продукта..."
-                  onChange={(e) => searchThingsHandler(e.target.value)}
-                />
-                <button
-                  onClick={() => searchClickHandler(state)}
-                  className="btn-header"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
+            <Header
+              state={state}
+              setStateFilter={setStateFilter}
+              searhThings={searhThings}
+              setSearchThings={setSearchThings}
+              stateFilter={stateFilter}
+              setState2={setState2}
+              startIndex={startIndex}
+              setSelectShow={setSelectShow}
+            />
           </header>
-          {/* content */}
 
+          {/* content */}
           <div className="Wrapper_container_content">
-            <div className="content_leftBar">
-              <div className="content_leftBar_btn">
-                <button className="content-btn" onClick={creatingProdhandler}>
-                  {" "}
-                  Создать продукт{" "}
-                </button>
-              </div>
-              {/* список подгружаемых элементов */}
-              {/* по фильтру */}
-              {stateFilter &&
-                stateFilter.map((item, index) => (
-                  <div
-                    className={
-                      startIndex === index
-                        ? "content_leftBar_elems_active"
-                        : "content_leftBar_elems "
-                    }
-                    key={index}
-                    onClick={() => clickHandler(item, index)}
-                    id={index}
-                  >
-                    <p className="elems_name">{item.ProdName}</p>
-                    <p className="elems_time">{item.Date}</p>
-                  </div>
-                ))}
-              {/* без фильтра */}
-              {state &&
-                stateFilter.length === 0 &&
-                state.map((item, index) => (
-                  <div
-                    className={
-                      startIndex === index
-                        ? "content_leftBar_elems_active"
-                        : "content_leftBar_elems "
-                    }
-                    key={index}
-                    onClick={() => clickHandler(item, index)}
-                    id={index}
-                  >
-                    <p className="elems_name">{item.ProdName}</p>
-                    <p className="elems_time">{item.Date}</p>
-                  </div>
-                ))}
-            </div>
+            <ListProducts
+              stateFilter={stateFilter}
+              state={state}
+              startIndex={startIndex}
+              clickHandler={clickHandler}
+              creatingProdhandler={creatingProdhandler}
+              selectShow={selectShow}
+            />
+
             {/* правая сторона */}
+
             {/* отображение при клике на СОЗДАТЬ продукт */}
             {creatingProd && (
-              <div className="content_infoThings">
-                <p className="infoThings_name">{newState.ProdName}</p>
-                <div className="infoThings_newName">
-                  <label className="infoThings_newName-label">
-                    Название товара
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Введите имя продукта"
-                    className="infoThings_newName-input"
-                    value={newState.ProdName}
-                    onChange={productName2Handler}
-                  />
-                </div>
-                <div className="infoThings_newName">
-                  <label className="infoThings_newName-label">
-                    Фото товара
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Вставьте URL - ссылку на фото продукта"
-                    className="infoThings_newName-input"
-                    value={newState.Photo}
-                    onChange={productPhotoHandler}
-                  />
-                </div>
-                <div className="infoThings_newAmount">
-                  <div className="infoThings_newAmount-min">
-                    <label className="infoThings_newName-label">Мин цена</label>
-                    <input
-                      type="text"
-                      placeholder="Введите мин цену"
-                      className="infoThings_newName-input"
-                      value={newState.MinAmount}
-                      onChange={minAmount2Handler}
-                    />
-                  </div>
-                  <div className="infoThings_newAmount-max">
-                    <label className="infoThings_newName-label">
-                      Maкс Цена
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите макс цену"
-                      className="infoThings_newName-input"
-                      value={newState.MaxAmount}
-                      onChange={maxAmount2Handler}
-                    />
-                  </div>
-                </div>
-                <div className="infoThings_newTerm">
-                  <div className="infoThings_newTerm-min">
-                    <label className="infoThings_newName-label">
-                      Мин количество
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите мин количество"
-                      className="infoThings_newName-input"
-                      value={newState.MinTerm}
-                      onChange={minTerm2Handler}
-                    />
-                  </div>
-                  <div className="infoThings_newTerm-max">
-                    <label className="infoThings_newName-label">
-                      Макс количество
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите макс количество"
-                      className="infoThings_newName-input"
-                      value={newState.MaxTerm}
-                      onChange={maxTerm2Handler}
-                    />
-                  </div>
-                </div>
-                <div className="infoThings_newRate">
-                  <label className="infoThings_newName-label">Рейтинг</label>
-                  <input
-                    type="text"
-                    placeholder="Укажите рейтинг"
-                    className="infoThings_newRate-input"
-                    value={newState.Rate}
-                    onChange={rate2Handler}
-                  />
-                </div>
-                <button
-                  className="content-btn-rgt"
-                  onClick={() => createNewObjHandler({ newState, state })}
-                >
-                  Cоздать
-                </button>
-              </div>
+              <CreatingThing
+                newState={newState}
+                productName2Handler={productName2Handler}
+                productPhotoHandler={productPhotoHandler}
+                minAmount2Handler={minAmount2Handler}
+                maxAmount2Handler={maxAmount2Handler}
+                minTerm2Handler={minTerm2Handler}
+                maxTerm2Handler={maxTerm2Handler}
+                rate2Handler={rate2Handler}
+                createNewObjHandler={createNewObjHandler}
+                state={state}
+              />
             )}
-            {/* отображение при клике по списку продуктов или дефолтоное при загрузке */}
-            {state2 !== undefined && creatingProd === false && (
-              <div className="content_infoThings">
-                <p className="infoThings_name">{state2.ProdName}</p>
-                <div className="infoThing_photo_gl">
-                  <img
-                    src={state2.Photo}
-                    alt="photoTV"
-                    className="infoThing_photo"
-                  />
-                </div>
-                <div className="infoThings_newName">
-                  <label className="infoThings_newName-label">
-                    Имя продукта
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Введите имя продукта"
-                    className="infoThings_newName-input"
-                    value={state2.ProdName}
-                    onChange={productNameHandler}
-                  />
-                </div>
-                <div className="infoThings_newAmount">
-                  <div className="infoThings_newAmount-min">
-                    <label className="infoThings_newName-label">Мин цена</label>
-                    <input
-                      type="text"
-                      placeholder="Введите минимальную цену"
-                      className="infoThings_newName-input"
-                      value={state2.MinAmount}
-                      onChange={minAmountHandler}
-                    />
-                  </div>
-                  <div className="infoThings_newAmount-max">
-                    <label className="infoThings_newName-label">
-                      Макс цена
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите максимальную цену"
-                      className="infoThings_newName-input"
-                      value={state2.MaxAmount}
-                      onChange={maxAmountHandler}
-                    />
-                  </div>
-                </div>
-                <div className="infoThings_newTerm">
-                  <div className="infoThings_newTerm-min">
-                    <label className="infoThings_newName-label">
-                      Мин количество
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите минимальное количество"
-                      className="infoThings_newName-input"
-                      value={state2.MinTerm}
-                      onChange={minTermHandler}
-                    />
-                  </div>
-                  <div className="infoThings_newTerm-max">
-                    <label className="infoThings_newName-label">
-                      Макс количество
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Введите максимальное количество"
-                      className="infoThings_newName-input"
-                      value={state2.MaxTerm}
-                      onChange={maxTermHandler}
-                    />
-                  </div>
-                </div>
-                <div className="infoThings_newRate">
-                  <label className="infoThings_newName-label">Рейтинг</label>
-                  <input
-                    type="text"
-                    placeholder="Укажите рейтинг"
-                    className="infoThings_newRate-input"
-                    value={state2.Rate}
-                    onChange={rateHandler}
-                  />
-                </div>
-                <div>
-                  <button
-                    className="content-btn-rgt"
-                    onClick={() => saveHandler(startIndex, state2)}
-                  >
-                    Сохранить
-                  </button>
-
-                  <button
-                    className="content-btn-rgt-delete"
-                    onClick={() => deleteHandler(startIndex, state)}
-                  >
-                    Удалить
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* Информация по продукту для админа */}
+            {state2 !== undefined &&
+              creatingProd === false &&
+              selectShow === "admin" && (
+                <InformationThingAdmin
+                  state2={state2}
+                  state={state}
+                  startIndex={startIndex}
+                  saveHandler={saveHandler}
+                  deleteHandler={deleteHandler}
+                  productNameHandler={productNameHandler}
+                  minAmountHandler={minAmountHandler}
+                  maxAmountHandler={maxAmountHandler}
+                  minTermHandler={minTermHandler}
+                  maxTermHandler={maxTermHandler}
+                  rateHandler={rateHandler}
+                />
+              )}
+            {/* Информация по продукту для админа */}
+            {state2 !== undefined &&
+              creatingProd === false &&
+              selectShow === "user" && <InformationThingUser state2={state2} />}
           </div>
         </div>
       </div>
